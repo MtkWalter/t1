@@ -80,6 +80,12 @@ for(const z of [3.34,3.62]){
  burner.position.set(.35,.95,z);scene.add(burner);
  for(const angle of [0,Math.PI/2]){const grate=box(.35,.967,z,.22,.015,.014,'metal');grate.rotation.y=angle;}
 }
+// Wall-connected island behind the cooktop; its inner end meets the secondary-bedroom wall.
+// Approximate footprint: 0.62 x 0.95 m, longer than the 0.58 m cooktop.
+box(1.8,.43,3.235,.56,.86,.95,'white',true).name='kitchen-island';
+box(1.8,.88,3.235,.62,.07,.95,'wood').name='kitchen-island-countertop';
+box(1.8,.43,3.715,.012,.68,.012,'edge');
+box(1.8,.69,3.72,.22,.025,.025,'metal');
 box(4.05,.95,6.5,.7,1.9,.65,'white',true).name='refrigerator';
 box(4.05,.98,6.165,.65,.02,.015,'metal');
 // Two bathrooms: shower, toilet, sink.
