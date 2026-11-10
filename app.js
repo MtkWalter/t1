@@ -59,8 +59,29 @@ diningColumn.name='dining-structural-column';
 box(3.15,.07,6.75,.77,.14,.72,'edge');
 // Dining table and chairs.
 box(3.65,.76,5.48,1,.1,1.25,'wood',true);for(let x of [3.25,4.05])for(let z of [5,5.95])box(x,.38,z,.06,.76,.06,'dark');for(const x of [2.95,4.35]){const z=5.48;box(x,.44,z,.4,.08,.4,'linen',true).name='dining-chair';box(x+(x<3?-.18:.18),.65,z,.05,.5,.42,'wood');}
-// Kitchen and appliances.
-box(.34,.43,4.3,.56,.86,2.4,'white',true);box(.34,.88,4.3,.62,.07,2.4,'wood');box(.35,.925,3.65,.42,.02,.44,'metal');for(let z of [4.45,4.7])box(.35,.93,z,.34,.025,.18,0x343a37);box(4.05,.95,6.5,.7,1.9,.65,'white',true).name='refrigerator';box(4.05,.98,6.165,.65,.02,.015,'metal');
+// Kitchen follows the user's order: sink nearest entrance, prep surface, then stove.
+// The cabinet stops 10 cm before the entrance jamb at z=5.65.
+box(.34,.43,4.3,.56,.86,2.5,'white',true).name='kitchen-cabinet';
+box(.34,.88,4.3,.62,.07,2.5,'wood').name='kitchen-countertop';
+for(const z of [3.1,3.9,4.75,5.5])box(.625,.43,z,.015,.7,.012,'edge');
+box(.35,.92,4.37,.49,.015,.9,'wood').name='kitchen-prep-surface';
+// Recessed stainless sink and faucet, at the end adjoining the main entrance.
+box(.35,.922,5.17,.46,.015,.52,'metal').name='kitchen-sink';
+box(.35,.933,5.17,.35,.012,.39,0x657f7c);
+for(const x of [.14,.56])box(x,.94,5.17,.035,.025,.5,0xc4ceca);
+for(const z of [4.925,5.415])box(.35,.94,z,.45,.025,.035,0xc4ceca);
+box(.12,1.065,5.17,.035,.28,.035,'metal');
+box(.22,1.19,5.17,.23,.035,.035,'metal');
+box(.32,1.155,5.17,.035,.09,.035,'metal');
+// Two-burner cooktop at the far end, toward the kitchen-side bedroom.
+box(.35,.925,3.48,.46,.025,.58,0x343a37).name='kitchen-stove';
+for(const z of [3.34,3.62]){
+ const burner=new THREE.Mesh(new THREE.CylinderGeometry(.085,.085,.018,24),new THREE.MeshStandardMaterial({color:0x192622}));
+ burner.position.set(.35,.95,z);scene.add(burner);
+ for(const angle of [0,Math.PI/2]){const grate=box(.35,.967,z,.22,.015,.014,'metal');grate.rotation.y=angle;}
+}
+box(4.05,.95,6.5,.7,1.9,.65,'white',true).name='refrigerator';
+box(4.05,.98,6.165,.65,.02,.015,'metal');
 // Two bathrooms: shower, toilet, sink.
 for(const z of [.85,2.35]){box(3.5,.85,z,.3,.13,.4,'white');box(4,.22,z+.35,.35,.4,.5,'white',true);box(4,.57,z+.12,.35,.55,.16,'white');box(3.52,1.33,z-.06,.29,.5,.03,0xa8c1b8);}
 box(8.2,.45,.5,.58,.9,.65,'white',true);const drum=new THREE.Mesh(new THREE.CylinderGeometry(.21,.21,.025,28),new THREE.MeshStandardMaterial({color:0x7f9997}));drum.rotation.x=Math.PI/2;drum.position.set(8.2,.46,.84);scene.add(drum);
